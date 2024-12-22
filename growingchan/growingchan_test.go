@@ -221,11 +221,17 @@ BenchmarkQueue/1_by_1/1000/ring_buffer-14   	            4143	    294708 ns/op	 
 BenchmarkQueue/1_by_1/10000/slice-14        	             422	   2842268 ns/op	     322 B/op	       5 allocs/op <==
 BenchmarkQueue/1_by_1/10000/ring_buffer-14  	             420	   2819256 ns/op	     336 B/op	       5 allocs/op
 
+BenchmarkQueue/1_by_1/10000000/slice-14   	                   1	2617309333 ns/op	   15440 B/op	     159 allocs/op
+BenchmarkQueue/1_by_1/10000000/ring_buffer-14         	       1	2589329708 ns/op	   12104 B/op	     124 allocs/op <==
+
 BenchmarkQueue/send_first/1000/slice-14     	            3784	    310462 ns/op	   27674 B/op	      21 allocs/op *time
 BenchmarkQueue/send_first/1000/ring_buffer-14         	    3852	    317170 ns/op	   24849 B/op	      24 allocs/op *mem
 
 BenchmarkQueue/send_first/10000/slice-14              	     387	   3069608 ns/op	  376268 B/op	      30 allocs/op <==
 BenchmarkQueue/send_first/10000/ring_buffer-14        	     387	   3120257 ns/op	  393494 B/op	      32 allocs/op
+
+BenchmarkQueue/send_first/10000000/slice-14           	       1	2896172667 ns/op	510588976 B/op	      74 allocs/op
+BenchmarkQueue/send_first/10000000/ring_buffer-14     	       1	2878689208 ns/op	402654024 B/op	      55 allocs/op <==
 
 BenchmarkQueue/with_jitter/1000/slice-14              	    7381	    157133 ns/op	   12413 B/op	      18 allocs/op <==
 BenchmarkQueue/with_jitter/1000/ring_buffer-14        	    7185	    160532 ns/op	   17471 B/op	      22 allocs/op
@@ -233,17 +239,26 @@ BenchmarkQueue/with_jitter/1000/ring_buffer-14        	    7185	    160532 ns/op
 BenchmarkQueue/with_jitter/10000/slice-14             	     769	   1564188 ns/op	  162834 B/op	      25 allocs/op <==
 BenchmarkQueue/with_jitter/10000/ring_buffer-14       	     753	   1562542 ns/op	  181868 B/op	      29 allocs/op
 
+BenchmarkQueue/with_jitter/10000000/slice-14          	       1	1451229000 ns/op	201565528 B/op	      72 allocs/op
+BenchmarkQueue/with_jitter/10000000/ring_buffer-14    	       1	1632077708 ns/op	201327080 B/op	      53 allocs/op <==
+
 BenchmarkQueue/more_send/1000/slice-14                	    3838	    310126 ns/op	   25690 B/op	      20 allocs/op <==
 BenchmarkQueue/more_send/1000/ring_buffer-14          	    3717	    317278 ns/op	   35321 B/op	      24 allocs/op
 
 BenchmarkQueue/more_send/10000/slice-14               	     384	   3230385 ns/op	  345779 B/op	      28 allocs/op <==
 BenchmarkQueue/more_send/10000/ring_buffer-14         	     388	   3131739 ns/op	  359550 B/op	      31 allocs/op *time
 
+BenchmarkQueue/more_send/10000000/slice-14            	       1	2925893250 ns/op	510695968 B/op	      74 allocs/op
+BenchmarkQueue/more_send/10000000/ring_buffer-14      	       1	3543492500 ns/op	402653928 B/op	      54 allocs/op <==
+
 BenchmarkQueue/more_recv/1000/slice-14                	    7532	    158864 ns/op	   12465 B/op	      18 allocs/op <==
 BenchmarkQueue/more_recv/1000/ring_buffer-14          	    7489	    160908 ns/op	   17499 B/op	      22 allocs/op
 
 BenchmarkQueue/more_recv/10000/slice-14               	     752	   1566762 ns/op	  159937 B/op	      25 allocs/op <==
 BenchmarkQueue/more_recv/10000/ring_buffer-14         	     771	   1598661 ns/op	  181581 B/op	      29 allocs/op
+
+BenchmarkQueue/more_recv/10000000/slice-14            	       1	1603604167 ns/op	260056432 B/op	      62 allocs/op
+BenchmarkQueue/more_recv/10000000/ring_buffer-14      	       1	1706489834 ns/op	201327320 B/op	      51 allocs/op <==
 */
 func BenchmarkQueue(b *testing.B) {
 	tests := []struct {
@@ -287,7 +302,7 @@ func BenchmarkQueue(b *testing.B) {
 		*/
 	}
 
-	sizes := []int{1000, 10000}
+	sizes := []int{10_000_000}
 
 	for _, t := range tests {
 		b.Run(t.name, func(b *testing.B) {
