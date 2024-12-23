@@ -252,47 +252,54 @@ var benchs = []struct {
 }
 
 /*
-one_by_one_empty/10000000/ring_slice-14           	      16	  87710995 ns/op	     112 B/op	       2 allocs/op
-one_by_one_empty/10000000/simple_slice-14         	       9	 128620500 ns/op	80000560 B/op	10000003 allocs/op
-one_by_one_empty/10000000/chan_backed-14          	       5	 217515017 ns/op	     184 B/op	       2 allocs/op
-one_by_one_empty/10000000/linked_list-14          	       7	 149063065 ns/op	160000257 B/op	10000003 allocs/op
-one_by_one_empty/10000000/pooled_linked_list-14   	      13	 101179397 ns/op	    2179 B/op	       5 allocs/op
+BenchmarkQueue/one_by_one_empty/10000000/simple_slice-14         	       9	 121843046 ns/op	80000496 B/op	10000003 allocs/op
+BenchmarkQueue/one_by_one_empty/10000000/ring_slice-14           	      14	  83549027 ns/op	     112 B/op	       2 allocs/op
+BenchmarkQueue/one_by_one_empty/10000000/chan_backed-14          	       5	 215711758 ns/op	     184 B/op	       2 allocs/op
+BenchmarkQueue/one_by_one_empty/10000000/linked_list-14          	       7	 145332577 ns/op	160000275 B/op	10000003 allocs/op
+BenchmarkQueue/one_by_one_empty/10000000/pooled_linked_list-14   	      13	  83949776 ns/op	    2179 B/op	       5 allocs/op
+BenchmarkQueue/one_by_one_empty/10000000/map_queue-14            	       7	 144742196 ns/op	     216 B/op	       3 allocs/op
 
-1_by_1_not_empty/10000000/ring_slice-14           	      14	  80320262 ns/op	     112 B/op	       2 allocs/op
-1_by_1_not_empty/10000000/simple_slice-14         	       7	 144646185 ns/op	160000300 B/op	10000004 allocs/op
-1_by_1_not_empty/10000000/chan_backed-14          	       5	 216541608 ns/op	     184 B/op	       2 allocs/op
-1_by_1_not_empty/10000000/linked_list-14          	       8	 140864760 ns/op	160000280 B/op	10000004 allocs/op
-1_by_1_not_empty/10000000/pooled_linked_list-14   	      14	  81481193 ns/op	    2369 B/op	       8 allocs/op
+BenchmarkQueue/1_by_1_not_empty/10000000/simple_slice-14         	       7	 144838292 ns/op	160000273 B/op	10000004 allocs/op
+BenchmarkQueue/1_by_1_not_empty/10000000/ring_slice-14           	      15	  83095636 ns/op	     112 B/op	       2 allocs/op
+BenchmarkQueue/1_by_1_not_empty/10000000/chan_backed-14          	       5	 215882133 ns/op	     184 B/op	       2 allocs/op
+BenchmarkQueue/1_by_1_not_empty/10000000/linked_list-14          	       7	 148270196 ns/op	160000355 B/op	10000005 allocs/op
+BenchmarkQueue/1_by_1_not_empty/10000000/pooled_linked_list-14   	      13	  84722304 ns/op	    2371 B/op	       8 allocs/op
+BenchmarkQueue/1_by_1_not_empty/10000000/map_queue-14            	       8	 126811703 ns/op	     216 B/op	       3 allocs/op
 
-send_first/10000000/ring_slice-14                 	      10	 124528192 ns/op	402651120 B/op	      39 allocs/op
-send_first/10000000/simple_slice-14               	      20	  57386581 ns/op	510582073 B/op	      59 allocs/op
-send_first/10000000/chan_backed-14                	       2	 641076396 ns/op	402865288 B/op	      40 allocs/op
-send_first/10000000/linked_list-14                	       5	 235952492 ns/op	160000078 B/op	10000002 allocs/op
-send_first/10000000/pooled_linked_list-14         	       3	 447592500 ns/op	428442989 B/op	10000048 allocs/op
+BenchmarkQueue/send_first/10000000/simple_slice-14               	      21	  53681673 ns/op	510582062 B/op	      59 allocs/op
+BenchmarkQueue/send_first/10000000/ring_slice-14                 	      12	 104720910 ns/op	402651144 B/op	      39 allocs/op
+BenchmarkQueue/send_first/10000000/chan_backed-14                	       2	 639467208 ns/op	402865192 B/op	      39 allocs/op
+BenchmarkQueue/send_first/10000000/linked_list-14                	       5	 230276833 ns/op	160000078 B/op	10000002 allocs/op
+BenchmarkQueue/send_first/10000000/pooled_linked_list-14         	       3	 451169153 ns/op	428442989 B/op	10000048 allocs/op
+BenchmarkQueue/send_first/10000000/map_queue-14                  	       1	1717362625 ns/op	708244304 B/op	  308588 allocs/op
 
-with_jitter/10000000/ring_slice-14                	      21	  52212335 ns/op	121354358 B/op	      85 allocs/op
-with_jitter/10000000/simple_slice-14              	      69	  26384487 ns/op	201260108 B/op	     145 allocs/op
-with_jitter/10000000/chan_backed-14               	       5	 252872092 ns/op	134837928 B/op	     101 allocs/op
-with_jitter/10000000/linked_list-14               	      10	 116423667 ns/op	82208454 B/op	 5138026 allocs/op
-with_jitter/10000000/pooled_linked_list-14        	       9	 121211861 ns/op	86891720 B/op	 1396691 allocs/op
+BenchmarkQueue/with_jitter/10000000/simple_slice-14              	      43	  25976665 ns/op	203996736 B/op	     149 allocs/op
+BenchmarkQueue/with_jitter/10000000/ring_slice-14                	      34	  50340311 ns/op	112497365 B/op	      86 allocs/op
+BenchmarkQueue/with_jitter/10000000/chan_backed-14               	       6	 230679451 ns/op	118721378 B/op	      82 allocs/op
+BenchmarkQueue/with_jitter/10000000/linked_list-14               	      13	 107430776 ns/op	78420076 B/op	 4901250 allocs/op
+BenchmarkQueue/with_jitter/10000000/pooled_linked_list-14        	       9	 138445241 ns/op	108763925 B/op	 1686032 allocs/op
+BenchmarkQueue/with_jitter/10000000/map_queue-14                 	       3	 648132319 ns/op	154535824 B/op	  105371 allocs/op
 
-more_enq/10000000/ring_slice-14                   	      12	  86706608 ns/op	200771429 B/op	      43 allocs/op
-more_enq/10000000/simple_slice-14                 	      21	  55125442 ns/op	457113966 B/op	      70 allocs/op
-more_enq/10000000/chan_backed-14                  	       3	 461585181 ns/op	209913682 B/op	      39 allocs/op
-more_enq/10000000/linked_list-14                  	       6	 223444125 ns/op	153908712 B/op	 9619291 allocs/op
-more_enq/10000000/pooled_linked_list-14           	       2	 515080188 ns/op	449214640 B/op	 8544519 allocs/op
+BenchmarkQueue/more_enq/10000000/simple_slice-14                 	      27	  48590451 ns/op	424552035 B/op	      86 allocs/op
+BenchmarkQueue/more_enq/10000000/ring_slice-14                   	      15	  92676703 ns/op	210496993 B/op	      51 allocs/op
+BenchmarkQueue/more_enq/10000000/chan_backed-14                  	       3	 445120014 ns/op	210974333 B/op	      45 allocs/op
+BenchmarkQueue/more_enq/10000000/linked_list-14                  	       5	 228798475 ns/op	168978436 B/op	10561151 allocs/op
+BenchmarkQueue/more_enq/10000000/pooled_linked_list-14           	       4	 411148844 ns/op	321528792 B/op	 7248407 allocs/op
+BenchmarkQueue/more_enq/10000000/map_queue-14                    	       1	2137234875 ns/op	723400560 B/op	  386194 allocs/op
 
-more_deq/10000000/ring_slice-14                   	      21	  56245853 ns/op	143451255 B/op	     171 allocs/op
-more_deq/10000000/simple_slice-14                 	      31	  32885551 ns/op	231541396 B/op	     229 allocs/op
-more_deq/10000000/chan_backed-14                  	       4	 279621750 ns/op	148791408 B/op	     125 allocs/op
-more_deq/10000000/linked_list-14                  	      10	 110187183 ns/op	78491835 B/op	 4905736 allocs/op
-more_deq/10000000/pooled_linked_list-14           	       9	 116376778 ns/op	80446332 B/op	 1148550 allocs/op
+BenchmarkQueue/more_deq/10000000/simple_slice-14                 	      38	  31169730 ns/op	205702099 B/op	     248 allocs/op
+BenchmarkQueue/more_deq/10000000/ring_slice-14                   	      20	  55643169 ns/op	157599056 B/op	     187 allocs/op
+BenchmarkQueue/more_deq/10000000/chan_backed-14                  	       3	 350532847 ns/op	202454749 B/op	     184 allocs/op
+BenchmarkQueue/more_deq/10000000/linked_list-14                  	      12	 115935969 ns/op	79690968 B/op	 4980679 allocs/op
+BenchmarkQueue/more_deq/10000000/pooled_linked_list-14           	      10	 127384396 ns/op	80124879 B/op	 1067165 allocs/op
+BenchmarkQueue/more_deq/10000000/map_queue-14                    	       3	 403530625 ns/op	95681226 B/op	   78223 allocs/op
 
-grow_and_shrink/10000000/ring_slice-14            	       8	 150578932 ns/op	267714824 B/op	      90 allocs/op
-grow_and_shrink/10000000/simple_slice-14          	      16	  83258049 ns/op	631710800 B/op	     121 allocs/op
-grow_and_shrink/10000000/chan_backed-14           	       2	 566527979 ns/op	201522264 B/op	      37 allocs/op
-grow_and_shrink/10000000/linked_list-14           	       4	 341054354 ns/op	244655424 B/op	15290958 allocs/op
-grow_and_shrink/10000000/pooled_linked_list-14    	       3	 369013722 ns/op	269086562 B/op	 5632635 allocs/op
+BenchmarkQueue/grow_and_shrink/10000000/simple_slice-14          	      16	  72690677 ns/op	599132662 B/op	     120 allocs/op
+BenchmarkQueue/grow_and_shrink/10000000/ring_slice-14            	       9	 128928079 ns/op	244334117 B/op	      81 allocs/op
+BenchmarkQueue/grow_and_shrink/10000000/chan_backed-14           	       2	 594684834 ns/op	215712728 B/op	      48 allocs/op
+BenchmarkQueue/grow_and_shrink/10000000/linked_list-14           	       4	 362754198 ns/op	264604552 B/op	16537784 allocs/op
+BenchmarkQueue/grow_and_shrink/10000000/pooled_linked_list-14    	       3	 411710236 ns/op	293733584 B/op	 6102257 allocs/op
+BenchmarkQueue/grow_and_shrink/10000000/map_queue-14             	       1	1576088083 ns/op	358238912 B/op	  175534 allocs/op
 */
 func BenchmarkQueue(b *testing.B) {
 	b.ReportAllocs()
