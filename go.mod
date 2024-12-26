@@ -1,4 +1,4 @@
-module empijei.science/growingchannels
+module github.com/empijei/gotests-public
 
 go 1.23.4
 
